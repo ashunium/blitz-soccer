@@ -9,7 +9,7 @@ export default function Home() {
       <section style={{ padding: "110px 60px 80px", maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", gap: "60px", flexWrap: "wrap", zIndex: 1, position: "relative" }}>
         <img src="/logo.png" alt="Blitz Soccer Logo" style={{ width: "240px", height: "240px", objectFit: "contain", borderRadius: "24px", boxShadow: "0 0 30px #22c55e, 0 0 60px #38bdf8, 0 0 90px #60a5fa, 0 0 120px #93c5fd", filter: "drop-shadow(0 0 10px #93c5fd)" }} />
 
-        <div style={{ maxWidth: "600px" }}>
+        <div style={{ maxWidth: "600px", marginLeft: "20px" }}>
           <h1 style={{ fontSize: "58px", fontWeight: "800", marginBottom: "20px" }}>Blitz Soccer</h1>
           <p style={{ fontSize: "19px", lineHeight: "1.6", opacity: 0.9 }}>
             Winter tournaments powered by Discord. Group stages, knockouts, and results — all in one frosty system.
