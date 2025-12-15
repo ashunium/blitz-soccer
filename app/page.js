@@ -3,12 +3,16 @@ export default function Home() {
     <main
       style={{
         minHeight: "100vh",
-        background:
-          "radial-gradient(1200px 600px at top, #1f2933, #0b0b0b)",
+        background: "linear-gradient(to bottom, #0a1c2c, #07101a)",
         color: "white",
         fontFamily: "Arial",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
+      {/* Snowfall */}
+      <Snowfall count={100} />
+
       {/* HERO */}
       <section
         style={{
@@ -19,9 +23,11 @@ export default function Home() {
           alignItems: "center",
           gap: "60px",
           flexWrap: "wrap",
+          zIndex: 1,
+          position: "relative",
         }}
       >
-        {/* LOGO */}
+        {/* Logo with icy/frosty glow */}
         <img
           src="/logo.png"
           alt="Blitz Soccer Logo"
@@ -30,11 +36,13 @@ export default function Home() {
             height: "240px",
             objectFit: "contain",
             borderRadius: "24px",
-            boxShadow: "0 0 60px rgba(34,197,94,0.3)",
+            boxShadow:
+              "0 0 30px #22c55e, 0 0 60px #38bdf8, 0 0 90px #60a5fa, 0 0 120px #93c5fd",
+            filter: "drop-shadow(0 0 10px #93c5fd)",
           }}
         />
 
-        {/* TEXT */}
+        {/* Text */}
         <div style={{ maxWidth: "600px" }}>
           <h1
             style={{
@@ -53,40 +61,19 @@ export default function Home() {
               opacity: 0.9,
             }}
           >
-            Competitive football tournaments managed through Discord.
-            Group stages, knockouts, schedules, and results — all organized
-            in one system.
+            Winter tournaments powered by Discord. Group stages, knockouts, and
+            results — all in one frosty system.
           </p>
 
           <div style={{ marginTop: "40px" }}>
             <a href="/tournaments">
-              <button
-                style={{
-                  padding: "15px 34px",
-                  fontSize: "16px",
-                  background: "#22c55e",
-                  border: "none",
-                  borderRadius: "10px",
-                  cursor: "pointer",
-                  marginRight: "16px",
-                }}
-              >
+              <button className="snow-btn">
                 View Tournaments
               </button>
             </a>
 
             <a href="https://discord.gg/YOUR_INVITE" target="_blank">
-              <button
-                style={{
-                  padding: "15px 34px",
-                  fontSize: "16px",
-                  background: "transparent",
-                  border: "1px solid #333",
-                  color: "white",
-                  borderRadius: "10px",
-                  cursor: "pointer",
-                }}
-              >
+              <button className="snow-btn outline">
                 Join Discord
               </button>
             </a>
@@ -103,6 +90,8 @@ export default function Home() {
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
           gap: "30px",
+          zIndex: 1,
+          position: "relative",
         }}
       >
         {[
@@ -113,12 +102,7 @@ export default function Home() {
         ].map(([icon, text]) => (
           <div
             key={text}
-            style={{
-              padding: "26px",
-              border: "1px solid #222",
-              borderRadius: "14px",
-              background: "rgba(255,255,255,0.02)",
-            }}
+            className="snow-box"
           >
             <div style={{ fontSize: "28px" }}>{icon}</div>
             <p style={{ marginTop: "10px", opacity: 0.85 }}>{text}</p>
@@ -132,6 +116,8 @@ export default function Home() {
           maxWidth: "1200px",
           margin: "0 auto",
           padding: "0 60px 100px",
+          zIndex: 1,
+          position: "relative",
         }}
       >
         <h2 style={{ fontSize: "32px", marginBottom: "30px" }}>
@@ -166,6 +152,8 @@ export default function Home() {
           borderTop: "1px solid #222",
           padding: "60px",
           textAlign: "center",
+          zIndex: 1,
+          position: "relative",
         }}
       >
         <h2 style={{ fontSize: "30px" }}>
@@ -176,28 +164,97 @@ export default function Home() {
         </p>
 
         <a href="/tournaments">
-          <button
-            style={{
-              marginTop: "30px",
-              padding: "14px 32px",
-              fontSize: "16px",
-              background: "#22c55e",
-              border: "none",
-              borderRadius: "10px",
-              cursor: "pointer",
-            }}
-          >
+          <button className="snow-btn" style={{ marginTop: "30px" }}>
             Browse Tournaments
           </button>
         </a>
       </section>
+
+      {/* GLOBAL CSS */}
+      <style jsx>{`
+        @keyframes fall {
+          0% { transform: translateY(-10px) }
+          100% { transform: translateY(110vh) }
+        }
+
+        .snow-box {
+          padding: 26px;
+          border-radius: 14px;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid #222;
+          backdrop-filter: blur(4px);
+          transition: transform 0.3s;
+        }
+        .snow-box:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 0 20px #38bdf8;
+        }
+
+        .snow-btn {
+          padding: 15px 34px;
+          font-size: 16px;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+          margin-right: 16px;
+          background: #22c55e;
+          color: white;
+          transition: all 0.3s;
+          box-shadow: 0 0 10px #60a5fa;
+        }
+        .snow-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 0 20px #93c5fd;
+        }
+        .snow-btn.outline {
+          background: transparent;
+          border: 1px solid #333;
+          color: white;
+        }
+        .snow-btn.outline:hover {
+          background: rgba(34, 197, 94, 0.1);
+          box-shadow: 0 0 15px #38bdf8;
+        }
+      `}</style>
     </main>
+  );
+}
+
+/* Snowfall Component */
+function Snowfall({ count }) {
+  const flakes = Array.from({ length: count });
+  return (
+    <>
+      {flakes.map((_, i) => {
+        const size = Math.random() * 4 + 2;
+        const left = Math.random() * 100;
+        const duration = Math.random() * 10 + 5;
+        const delay = Math.random() * 10;
+        return (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              top: "-10px",
+              left: `${left}%`,
+              width: `${size}px`,
+              height: `${size}px`,
+              backgroundColor: "white",
+              borderRadius: "50%",
+              opacity: Math.random() * 0.8 + 0.2,
+              animation: `fall ${duration}s linear ${delay}s infinite`,
+              zIndex: 0,
+            }}
+          />
+        );
+      })}
+    </>
   );
 }
 
 function Feature({ title, text }) {
   return (
-    <div>
+    <div className="snow-box">
       <h3 style={{ fontSize: "20px", marginBottom: "10px" }}>{title}</h3>
       <p style={{ opacity: 0.85, lineHeight: "1.6" }}>{text}</p>
     </div>
