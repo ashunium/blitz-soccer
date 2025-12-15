@@ -10,145 +10,87 @@ export default function Home() {
       }}
     >
       {/* HERO */}
-<section
-  style={{
-    padding: "110px 60px 80px",
-    maxWidth: "1200px",
-    margin: "0 auto",
-    display: "flex",
-    alignItems: "center",
-    gap: "60px",
-    flexWrap: "wrap",
-  }}
->
-  {/* LOGO */}
-  <img
-    src="/logo.png"
-    alt="Blitz Soccer Logo"
-    style={{
-      width: "240px",
-      height: "240px",
-      objectFit: "contain",
-      borderRadius: "24px",
-      boxShadow: "0 0 60px rgba(34,197,94,0.3)",
-    }}
-  />
-
-  {/* TEXT */}
-  <div style={{ maxWidth: "600px" }}>
-    <h1
-      style={{
-        fontSize: "58px",
-        fontWeight: "800",
-        marginBottom: "20px",
-      }}
-    >
-      Blitz Soccer
-    </h1>
-
-    <p
-      style={{
-        fontSize: "19px",
-        lineHeight: "1.6",
-        opacity: 0.9,
-      }}
-    >
-      Competitive football tournaments managed through Discord.
-      Group stages, knockouts, schedules, and results — all organized
-      in one system.
-    </p>
-
-    <div style={{ marginTop: "40px" }}>
-      <a href="/tournaments">
-        <button
+      <section
+        style={{
+          padding: "110px 60px 80px",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          display: "flex",
+          alignItems: "center",
+          gap: "60px",
+          flexWrap: "wrap",
+        }}
+      >
+        {/* LOGO */}
+        <img
+          src="/logo.png"
+          alt="Blitz Soccer Logo"
           style={{
-            padding: "15px 34px",
-            fontSize: "16px",
-            background: "#22c55e",
-            border: "none",
-            borderRadius: "10px",
-            cursor: "pointer",
-            marginRight: "16px",
+            width: "240px",
+            height: "240px",
+            objectFit: "contain",
+            borderRadius: "24px",
+            boxShadow: "0 0 60px rgba(34,197,94,0.3)",
           }}
-        >
-          View Tournaments
-        </button>
-      </a>
+        />
 
-      <a href="https://discord.gg/YOUR_INVITE" target="_blank">
-        <button
-          style={{
-            padding: "15px 34px",
-            fontSize: "16px",
-            background: "transparent",
-            border: "1px solid #333",
-            color: "white",
-            borderRadius: "10px",
-            cursor: "pointer",
-          }}
-        >
-          Join Discord
-        </button>
-      </a>
-    </div>
-  </div>
-</section>
+        {/* TEXT */}
+        <div style={{ maxWidth: "600px" }}>
+          <h1
+            style={{
+              fontSize: "58px",
+              fontWeight: "800",
+              marginBottom: "20px",
+            }}
+          >
+            Blitz Soccer
+          </h1>
 
-        <h1
-          style={{
-            fontSize: "58px",
-            fontWeight: "800",
-            marginBottom: "20px",
-          }}
-        >
-          Blitz Soccer
-        </h1>
+          <p
+            style={{
+              fontSize: "19px",
+              lineHeight: "1.6",
+              opacity: 0.9,
+            }}
+          >
+            Competitive football tournaments managed through Discord.
+            Group stages, knockouts, schedules, and results — all organized
+            in one system.
+          </p>
 
-        <p
-          style={{
-            fontSize: "19px",
-            maxWidth: "600px",
-            lineHeight: "1.6",
-            opacity: 0.9,
-          }}
-        >
-          Competitive football tournaments managed through Discord.
-          Group stages, knockouts, schedules, and results — all organized
-          in one system.
-        </p>
+          <div style={{ marginTop: "40px" }}>
+            <a href="/tournaments">
+              <button
+                style={{
+                  padding: "15px 34px",
+                  fontSize: "16px",
+                  background: "#22c55e",
+                  border: "none",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                  marginRight: "16px",
+                }}
+              >
+                View Tournaments
+              </button>
+            </a>
 
-        <div style={{ marginTop: "40px" }}>
-          <a href="/tournaments">
-            <button
-              style={{
-                padding: "15px 34px",
-                fontSize: "16px",
-                background: "#22c55e",
-                border: "none",
-                borderRadius: "10px",
-                cursor: "pointer",
-                marginRight: "16px",
-              }}
-            >
-              View Tournaments
-            </button>
-          </a>
-
-          <a href="https://discord.gg/YOUR_INVITE" target="_blank">
-            <button
-              style={{
-                padding: "15px 34px",
-                fontSize: "16px",
-                background: "transparent",
-                border: "1px solid #333",
-                color: "white",
-                borderRadius: "10px",
-                cursor: "pointer",
-              }}
-            >
-              Join Discord
-            </button>
-          </a>
+            <a href="https://discord.gg/YOUR_INVITE" target="_blank">
+              <button
+                style={{
+                  padding: "15px 34px",
+                  fontSize: "16px",
+                  background: "transparent",
+                  border: "1px solid #333",
+                  color: "white",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                }}
+              >
+                Join Discord
+              </button>
+            </a>
+          </div>
         </div>
       </section>
 
