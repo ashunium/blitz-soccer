@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <main style={{
       minHeight: "100vh",
-      padding: "100px 60px",
+      padding: "80px 30px",
       background: "radial-gradient(circle at top, #1a1a1a, #0b0b0b)"
     }}>
       <h1 style={{
