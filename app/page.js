@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 
 export default function Home() {
@@ -8,35 +7,36 @@ export default function Home() {
     { team: "Ice United", logo: "/logos/ice.png", p: 6, w: 4, d: 0, l: 2, gd: 5, pts: 12 },
     { team: "Snow City", logo: "/logos/snow.png", p: 6, w: 3, d: 2, l: 1, gd: 3, pts: 11 },
     { team: "Frost Wolves", logo: "/logos/frost.png", p: 6, w: 2, d: 1, l: 3, gd: -1, pts: 7 },
-    { team: "Glacier Esports", logo: "/logos/glacier.png", p: 6, w: 1, d: 1, l: 4, gd: -6, pts: 4 },
   ]);
 
   const sorted = [...teams].sort(
     (a, b) => b.pts - a.pts || b.gd - a.gd || b.w - a.w
   );
 
-  function updateTeam(index, field, value) {
-    const updated = [...teams];
-    updated[index][field] = Number(value);
-    updated[index].pts = updated[index].w * 3 + updated[index].d;
-    setTeams(updated);
+  function update(index, field, value) {
+    const copy = [...teams];
+    copy[index][field] = Number(value);
+    copy[index].pts = copy[index].w * 3 + copy[index].d;
+    setTeams(copy);
   }
 
   return (
-    <main style={bg}>
-      {/* Static background graphic */}
-      <div style={bgGraphic} />
+    <main style={page}>
+      {/* Snow background */}
+      <div style={snowBg} />
 
-      <div style={container}>
+      <section style={wrapper}>
         <header style={header}>
-          <h1 style={title}>GROUP A</h1>
+          <h1 style={title}>Group A</h1>
           <span style={subtitle}>Standings</span>
         </header>
 
-        <div style={tableWrap}>
+        <div style={card}>
+          <div style={qualBar} />
+
           <table style={table}>
             <thead>
-              <tr style={headRow}>
+              <tr style={thead}>
                 <th>#</th>
                 <th style={{ textAlign: "left" }}>Team</th>
                 <th>P</th>
@@ -50,71 +50,53 @@ export default function Home() {
 
             <tbody>
               {sorted.map((t, i) => (
-                <tr
-                  key={t.team}
-                  style={{
-                    background: i < 2 ? "#0f172a" : "transparent",
-                  }}
-                >
-                  <td style={cell}>{i + 1}</td>
+                <tr key={t.team} style={row}>
+                  <td>{i + 1}</td>
 
-                  <td style={{ ...cell, textAlign: "left", display: "flex", alignItems: "center", gap: "12px" }}>
+                  <td style={teamCell}>
                     <img src={t.logo} style={logo} />
-                    <span style={{ fontWeight: 600 }}>{t.team}</span>
+                    <strong>{t.team}</strong>
                   </td>
 
-                  <td style={cell}>{t.p}</td>
-
-                  <td style={cell}>
-                    <input type="number" value={t.w} onChange={e => updateTeam(i, "w", e.target.value)} style={input} />
-                  </td>
-
-                  <td style={cell}>
-                    <input type="number" value={t.d} onChange={e => updateTeam(i, "d", e.target.value)} style={input} />
-                  </td>
-
-                  <td style={cell}>
-                    <input type="number" value={t.l} onChange={e => updateTeam(i, "l", e.target.value)} style={input} />
-                  </td>
-
-                  <td style={cell}>{t.gd > 0 ? `+${t.gd}` : t.gd}</td>
-
-                  <td style={{ ...cell, fontWeight: 700 }}>{t.pts}</td>
+                  <td>{t.p}</td>
+                  <td><input value={t.w} onChange={e => update(i, "w", e.target.value)} style={input} /></td>
+                  <td><input value={t.d} onChange={e => update(i, "d", e.target.value)} style={input} /></td>
+                  <td><input value={t.l} onChange={e => update(i, "l", e.target.value)} style={input} /></td>
+                  <td>{t.gd > 0 ? `+${t.gd}` : t.gd}</td>
+                  <td style={{ fontWeight: 700 }}>{t.pts}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <footer style={legend}>
-          Top 2 teams qualify
-        </footer>
-      </div>
+        <p style={note}>Top 2 teams qualify</p>
+      </section>
     </main>
   );
 }
 
-/* ===== STYLES ===== */
+/* ================= STYLES ================= */
 
-const bg = {
+const page = {
   minHeight: "100vh",
-  background: "#020617",
+  background: "linear-gradient(180deg, #e8f2ff, #cfe4ff)",
   position: "relative",
-  color: "#e5e7eb",
   fontFamily: "Inter, Arial, sans-serif",
+  color: "#0f172a",
 };
 
-const bgGraphic = {
+const snowBg = {
   position: "absolute",
   inset: 0,
   backgroundImage:
-    "linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px)",
-  backgroundSize: "80px 80px",
-  opacity: 0.25,
+    "radial-gradient(#ffffff 1px, transparent 1px)",
+  backgroundSize: "26px 26px",
+  opacity: 0.35,
   pointerEvents: "none",
 };
 
-const container = {
+const wrapper = {
   position: "relative",
   maxWidth: "1100px",
   margin: "0 auto",
@@ -129,18 +111,29 @@ const header = {
 };
 
 const title = {
-  fontSize: "34px",
+  fontSize: "36px",
   fontWeight: 800,
 };
 
 const subtitle = {
   fontSize: "14px",
-  opacity: 0.6,
+  color: "#475569",
   textTransform: "uppercase",
 };
 
-const tableWrap = {
-  border: "1px solid #1f2937",
+const card = {
+  position: "relative",
+  background: "#ffffff",
+  border: "1px solid #cbd5e1",
+};
+
+const qualBar = {
+  position: "absolute",
+  left: 0,
+  top: 0,
+  bottom: 0,
+  width: "6px",
+  background: "#2563eb",
 };
 
 const table = {
@@ -148,36 +141,41 @@ const table = {
   borderCollapse: "collapse",
 };
 
-const headRow = {
+const thead = {
   fontSize: "12px",
   textTransform: "uppercase",
-  color: "#9ca3af",
-  borderBottom: "1px solid #1f2937",
+  background: "#f1f5f9",
+  color: "#475569",
 };
 
-const cell = {
-  padding: "14px",
-  textAlign: "center",
-  borderBottom: "1px solid #1f2937",
+const row = {
+  borderBottom: "1px solid #e2e8f0",
+};
+
+const teamCell = {
+  textAlign: "left",
+  display: "flex",
+  alignItems: "center",
+  gap: "12px",
+  paddingLeft: "14px",
 };
 
 const logo = {
-  width: "28px",
-  height: "28px",
+  width: "26px",
+  height: "26px",
   objectFit: "contain",
 };
 
 const input = {
-  width: "40px",
-  background: "transparent",
-  border: "1px solid #374151",
-  color: "#e5e7eb",
-  textAlign: "center",
+  width: "36px",
+  border: "1px solid #cbd5e1",
   borderRadius: "4px",
+  textAlign: "center",
+  background: "#ffffff",
 };
 
-const legend = {
-  marginTop: "12px",
+const note = {
+  marginTop: "10px",
   fontSize: "13px",
-  color: "#9ca3af",
+  color: "#475569",
 };
