@@ -7,15 +7,7 @@ export default function Home() {
   ];
 
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background: "#020617",
-        color: "white",
-        padding: "60px 20px",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
+    <main style={{ minHeight: "100vh", padding: "60px 20px" }}>
       <div style={{ maxWidth: "900px", margin: "0 auto" }}>
         <h1
           style={{
@@ -46,13 +38,7 @@ export default function Home() {
           <thead>
             <tr style={{ borderBottom: "2px solid #1f2937" }}>
               {["#", "Team", "P", "W", "D", "L", "GD", "Pts"].map((h) => (
-                <th
-                  key={h}
-                  style={{
-                    padding: "14px",
-                    textAlign: "center",
-                  }}
-                >
+                <th key={h} style={{ padding: "14px" }}>
                   {h}
                 </th>
               ))}
