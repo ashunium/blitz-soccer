@@ -8,41 +8,40 @@ export default function Page() {
 
   return (
     <main style={page}>
-      {/* Snow background */}
+      {/* Background */}
       <div style={bg} />
 
       <section style={container}>
+        {/* Tournament Name */}
+        <h1 style={tournamentTitle}>BLITZ WINTER CUP - GROUP A</h1>
+        <p style={tournamentSub}>Top 2 teams advance to Playoffs</p>
+
         {/* Table Panel */}
         <div style={panel}>
-          <div style={panelHeader}>
-            <h1 style={panelTitle}>BLITZ WINTER CUP - GROUP A</h1>
-            <span style={panelSub}>Top 2 advance</span>
-          </div>
-
           <table style={table}>
             <thead>
               <tr>
-                <th>#</th>
-                <th>TEAM</th>
-                <th>P</th>
-                <th>W</th>
-                <th>D</th>
-                <th>L</th>
-                <th>GD</th>
-                <th>PTS</th>
+                <th style={thCenter}>#</th>
+                <th style={thLeft}>TEAM</th>
+                <th style={thCenter}>P</th>
+                <th style={thCenter}>W</th>
+                <th style={thCenter}>D</th>
+                <th style={thCenter}>L</th>
+                <th style={thCenter}>GD</th>
+                <th style={thCenter}>PTS</th>
               </tr>
             </thead>
             <tbody>
               {teams.map((t, i) => (
                 <tr key={t.name} style={i < 2 ? qualified : row}>
-                  <td>{i + 1}</td>
-                  <td style={teamCell}>{t.name}</td>
-                  <td>{t.p}</td>
-                  <td>{t.w}</td>
-                  <td>{t.d}</td>
-                  <td>{t.l}</td>
-                  <td>{t.gd > 0 ? `+${t.gd}` : t.gd}</td>
-                  <td style={pts}>{t.pts}</td>
+                  <td style={tdCenter}>{i + 1}</td>
+                  <td style={tdTeam}>{t.name}</td>
+                  <td style={tdCenter}>{t.p}</td>
+                  <td style={tdCenter}>{t.w}</td>
+                  <td style={tdCenter}>{t.d}</td>
+                  <td style={tdCenter}>{t.l}</td>
+                  <td style={tdCenter}>{t.gd > 0 ? `+${t.gd}` : t.gd}</td>
+                  <td style={tdCenter}>{t.pts}</td>
                 </tr>
               ))}
             </tbody>
@@ -62,7 +61,8 @@ const page = {
   color: "#fff",
   display: "flex",
   justifyContent: "center",
-  alignItems: "center",
+  alignItems: "flex-start",
+  paddingTop: "80px",
 };
 
 const bg = {
@@ -76,61 +76,70 @@ const bg = {
 
 const container = {
   display: "flex",
+  flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
   width: "100%",
 };
 
-const panel = {
-  background: "rgba(255,255,255,0.12)",
-  backdropFilter: "blur(12px)",
-  border: "1px solid rgba(255,255,255,0.3)",
-  borderRadius: "20px",
-  maxWidth: "900px",
-  width: "90%",
-  padding: "40px",
-};
-
-const panelHeader = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "baseline",
-  marginBottom: "20px",
-};
-
-const panelTitle = {
-  fontSize: "32px",
+const tournamentTitle = {
+  fontSize: "56px",
   fontWeight: 900,
-  letterSpacing: "0.04em",
+  marginBottom: "8px",
+  textAlign: "center",
 };
 
-const panelSub = {
-  fontSize: "14px",
+const tournamentSub = {
+  fontSize: "18px",
   opacity: 0.8,
+  marginBottom: "40px",
+  textAlign: "center",
+};
+
+const panel = {
+  background: "rgba(255,255,255,0.15)",
+  backdropFilter: "blur(14px)",
+  border: "1px solid rgba(255,255,255,0.25)",
+  borderRadius: "22px",
+  padding: "50px",
+  width: "90%",
+  maxWidth: "1000px",
 };
 
 const table = {
   width: "100%",
   borderCollapse: "collapse",
-  fontSize: "18px",
+  fontSize: "20px",
 };
 
-const row = {
-  borderBottom: "1px solid rgba(255,255,255,0.25)",
-};
-
-const qualified = {
-  background: "rgba(37, 99, 235, 0.2)",
-  borderBottom: "1px solid rgba(255,255,255,0.25)",
-};
-
-const teamCell = {
-  textAlign: "left",
+const thCenter = {
+  textAlign: "center",
+  padding: "12px 8px",
   fontWeight: 700,
+};
+
+const thLeft = {
+  textAlign: "left",
+  padding: "12px 8px",
+  fontWeight: 700,
+};
+
+const tdCenter = {
+  textAlign: "center",
   padding: "12px 8px",
 };
 
-const pts = {
-  fontWeight: 900,
-  textAlign: "center",
+const tdTeam = {
+  textAlign: "left",
+  padding: "12px 8px",
+  fontWeight: 700,
+};
+
+const row = {
+  borderBottom: "1px solid rgba(255,255,255,0.15)",
+};
+
+const qualified = {
+  background: "rgba(37,99,235,0.2)",
+  borderBottom: "1px solid rgba(255,255,255,0.15)",
 };
