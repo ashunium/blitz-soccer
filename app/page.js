@@ -1,30 +1,31 @@
-"use client";
-
-const teams = [
-  { name: "Blitz FC", logo: "/logos/blitz.png", p: 6, w: 4, d: 1, l: 1, gd: 7, pts: 13 },
-  { name: "Ice United", logo: "/logos/ice.png", p: 6, w: 4, d: 0, l: 2, gd: 5, pts: 12 },
-  { name: "Snow City", logo: "/logos/snow.png", p: 6, w: 3, d: 2, l: 1, gd: 3, pts: 11 },
-  { name: "Frost Wolves", logo: "/logos/frost.png", p: 6, w: 2, d: 1, l: 3, gd: -1, pts: 7 },
-];
-
 export default function Page() {
+  const teams = [
+    { name: "Blitz FC", logo: "/logos/blitz.png", p: 6, w: 4, d: 1, l: 1, gd: 7, pts: 13 },
+    { name: "Ice United", logo: "/logos/ice.png", p: 6, w: 4, d: 0, l: 2, gd: 5, pts: 12 },
+    { name: "Snow City", logo: "/logos/snow.png", p: 6, w: 3, d: 2, l: 1, gd: 3, pts: 11 },
+    { name: "Frost Wolves", logo: "/logos/frost.png", p: 6, w: 2, d: 1, l: 3, gd: -1, pts: 7 },
+  ];
+
   return (
     <main style={page}>
-      {/* Background graphics */}
-      <div style={bgGraphic} />
+      {/* Snow texture */}
+      <div style={snowTexture} />
 
       <section style={container}>
+        {/* Header */}
         <header style={header}>
-          <span style={event}>BLITZ WINTER CUP</span>
-          <h1 style={title}>Group A</h1>
+          <div style={eventTag}>BLITZ WINTER CUP</div>
+          <h1 style={group}>GROUP A</h1>
+          <div style={rule}>Top 2 advance</div>
         </header>
 
-        <div style={tableCard}>
+        {/* Table */}
+        <div style={tableWrapper}>
           <table style={table}>
             <thead>
               <tr>
                 <th>#</th>
-                <th>Team</th>
+                <th style={{ textAlign: "left" }}>Team</th>
                 <th>P</th>
                 <th>W</th>
                 <th>D</th>
@@ -36,12 +37,14 @@ export default function Page() {
 
             <tbody>
               {teams.map((t, i) => (
-                <tr key={t.name} style={i < 2 ? qualified : row}>
-                  <td>{i + 1}</td>
+                <tr key={t.name} style={i < 2 ? qualifiedRow : row}>
+                  <td style={pos}>{i + 1}</td>
+
                   <td style={teamCell}>
                     <img src={t.logo} style={logo} />
                     {t.name}
                   </td>
+
                   <td>{t.p}</td>
                   <td>{t.w}</td>
                   <td>{t.d}</td>
@@ -53,10 +56,6 @@ export default function Page() {
             </tbody>
           </table>
         </div>
-
-        <footer style={legend}>
-          Top 2 teams advance to Playoffs
-        </footer>
       </section>
     </main>
   );
@@ -66,20 +65,17 @@ export default function Page() {
 
 const page = {
   minHeight: "100vh",
-  background:
-    "linear-gradient(160deg, #eaf2ff 0%, #d7e6ff 35%, #c1d4f3 100%)",
+  background: "#e6f0ff",
   position: "relative",
   fontFamily: "Inter, system-ui, sans-serif",
-  color: "#0f172a",
+  color: "#0b1b33",
 };
 
-const bgGraphic = {
+const snowTexture = {
   position: "absolute",
   inset: 0,
-  backgroundImage: `
-    linear-gradient(120deg, rgba(59,130,246,.08), transparent 60%),
-    linear-gradient(300deg, rgba(14,165,233,.12), transparent 55%)
-  `,
+  backgroundImage: "url('/snow-texture.png')",
+  opacity: 0.35,
   pointerEvents: "none",
 };
 
@@ -91,27 +87,35 @@ const container = {
 };
 
 const header = {
-  marginBottom: "30px",
+  display: "grid",
+  gridTemplateColumns: "1fr auto 1fr",
+  alignItems: "center",
+  marginBottom: "24px",
 };
 
-const event = {
+const eventTag = {
   fontSize: "13px",
-  letterSpacing: "0.14em",
-  color: "#2563eb",
   fontWeight: 700,
+  letterSpacing: "0.14em",
+  color: "#1d4ed8",
 };
 
-const title = {
-  fontSize: "42px",
-  fontWeight: 800,
-  marginTop: "6px",
+const group = {
+  textAlign: "center",
+  fontSize: "44px",
+  fontWeight: 900,
 };
 
-const tableCard = {
-  background: "rgba(255,255,255,.75)",
-  backdropFilter: "blur(12px)",
-  borderRadius: "16px",
-  border: "1px solid rgba(255,255,255,.6)",
+const rule = {
+  textAlign: "right",
+  fontSize: "13px",
+  color: "#334155",
+};
+
+const tableWrapper = {
+  background: "#ffffff",
+  borderRadius: "14px",
+  border: "1px solid #c7d7f2",
   overflow: "hidden",
 };
 
@@ -121,12 +125,16 @@ const table = {
 };
 
 const row = {
-  borderBottom: "1px solid rgba(15,23,42,.06)",
+  borderBottom: "1px solid #e5edf9",
 };
 
-const qualified = {
-  background: "linear-gradient(90deg, rgba(37,99,235,.08), transparent)",
-  borderBottom: "1px solid rgba(15,23,42,.06)",
+const qualifiedRow = {
+  background: "#f0f6ff",
+  borderBottom: "1px solid #e5edf9",
+};
+
+const pos = {
+  fontWeight: 800,
 };
 
 const teamCell = {
@@ -136,16 +144,12 @@ const teamCell = {
 };
 
 const logo = {
-  width: "28px",
-  height: "28px",
+  width: "30px",
+  height: "30px",
+  objectFit: "contain",
 };
 
 const pts = {
-  fontWeight: 800,
-};
-
-const legend = {
-  marginTop: "12px",
-  fontSize: "14px",
-  color: "#334155",
+  fontWeight: 900,
+  fontSize: "16px",
 };
