@@ -18,22 +18,22 @@ export default function Home() {
   function updateTeam(index, field, value) {
     const updated = [...teams];
     updated[index][field] = Number(value);
-    updated[index].pts =
-      updated[index].w * 3 + updated[index].d;
-    updated[index].gd =
-      updated[index].gd;
+    updated[index].pts = updated[index].w * 3 + updated[index].d;
     setTeams(updated);
   }
 
   return (
     <main style={bg}>
-      {/* Background effect */}
-      <div style={overlay} />
+      {/* Static background graphic */}
+      <div style={bgGraphic} />
 
       <div style={container}>
-        <h1 style={title}>GROUP A — STANDINGS</h1>
+        <header style={header}>
+          <h1 style={title}>GROUP A</h1>
+          <span style={subtitle}>Standings</span>
+        </header>
 
-        <div style={card}>
+        <div style={tableWrap}>
           <table style={table}>
             <thead>
               <tr style={headRow}>
@@ -53,16 +53,14 @@ export default function Home() {
                 <tr
                   key={t.team}
                   style={{
-                    background:
-                      i < 2 ? "rgba(34,197,94,0.12)" : "transparent",
-                    borderTop: "1px solid #1f2937",
+                    background: i < 2 ? "#0f172a" : "transparent",
                   }}
                 >
                   <td style={cell}>{i + 1}</td>
 
-                  <td style={{ ...cell, textAlign: "left", display: "flex", gap: "12px", alignItems: "center" }}>
+                  <td style={{ ...cell, textAlign: "left", display: "flex", alignItems: "center", gap: "12px" }}>
                     <img src={t.logo} style={logo} />
-                    <strong>{t.team}</strong>
+                    <span style={{ fontWeight: 600 }}>{t.team}</span>
                   </td>
 
                   <td style={cell}>{t.p}</td>
@@ -79,41 +77,40 @@ export default function Home() {
                     <input type="number" value={t.l} onChange={e => updateTeam(i, "l", e.target.value)} style={input} />
                   </td>
 
-                  <td style={{ ...cell, color: t.gd >= 0 ? "#22c55e" : "#ef4444" }}>
-                    {t.gd > 0 ? `+${t.gd}` : t.gd}
-                  </td>
+                  <td style={cell}>{t.gd > 0 ? `+${t.gd}` : t.gd}</td>
 
-                  <td style={{ ...cell, fontWeight: "800", color: "#38bdf8" }}>
-                    {t.pts}
-                  </td>
+                  <td style={{ ...cell, fontWeight: 700 }}>{t.pts}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <p style={legend}>🟢 Top 2 qualify · Admin editable</p>
+        <footer style={legend}>
+          Top 2 teams qualify
+        </footer>
       </div>
     </main>
   );
 }
 
-/* ================= STYLES ================= */
+/* ===== STYLES ===== */
 
 const bg = {
   minHeight: "100vh",
-  background:
-    "radial-gradient(1000px 400px at top, #020617, #000)",
+  background: "#020617",
   position: "relative",
-  color: "white",
-  fontFamily: "Inter, Arial",
+  color: "#e5e7eb",
+  fontFamily: "Inter, Arial, sans-serif",
 };
 
-const overlay = {
+const bgGraphic = {
   position: "absolute",
   inset: 0,
-  background:
-    "linear-gradient(120deg, rgba(56,189,248,0.08), rgba(34,197,94,0.05))",
+  backgroundImage:
+    "linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px)",
+  backgroundSize: "80px 80px",
+  opacity: 0.25,
   pointerEvents: "none",
 };
 
@@ -124,20 +121,26 @@ const container = {
   padding: "60px 20px",
 };
 
-const title = {
-  textAlign: "center",
-  fontSize: "42px",
-  fontWeight: "900",
-  marginBottom: "30px",
-  letterSpacing: "1px",
+const header = {
+  display: "flex",
+  alignItems: "baseline",
+  gap: "12px",
+  marginBottom: "24px",
 };
 
-const card = {
-  background: "rgba(2,6,23,0.9)",
+const title = {
+  fontSize: "34px",
+  fontWeight: 800,
+};
+
+const subtitle = {
+  fontSize: "14px",
+  opacity: 0.6,
+  textTransform: "uppercase",
+};
+
+const tableWrap = {
   border: "1px solid #1f2937",
-  borderRadius: "18px",
-  overflow: "hidden",
-  boxShadow: "0 0 40px rgba(56,189,248,0.15)",
 };
 
 const table = {
@@ -146,33 +149,35 @@ const table = {
 };
 
 const headRow = {
-  background: "#020617",
   fontSize: "12px",
-  opacity: 0.7,
+  textTransform: "uppercase",
+  color: "#9ca3af",
+  borderBottom: "1px solid #1f2937",
 };
 
 const cell = {
   padding: "14px",
   textAlign: "center",
+  borderBottom: "1px solid #1f2937",
 };
 
 const logo = {
-  width: "34px",
-  height: "34px",
+  width: "28px",
+  height: "28px",
   objectFit: "contain",
 };
 
 const input = {
-  width: "42px",
-  background: "#020617",
-  border: "1px solid #1f2937",
-  color: "white",
+  width: "40px",
+  background: "transparent",
+  border: "1px solid #374151",
+  color: "#e5e7eb",
   textAlign: "center",
-  borderRadius: "6px",
+  borderRadius: "4px",
 };
 
 const legend = {
-  marginTop: "14px",
-  opacity: 0.6,
+  marginTop: "12px",
   fontSize: "13px",
+  color: "#9ca3af",
 };
