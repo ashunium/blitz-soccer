@@ -13,7 +13,7 @@ export default function Page() {
 
       <section style={container}>
         {/* Tournament Name */}
-        <h1 style={tournamentTitle}>BLITZ WINTER CUP - GROUP A</h1>
+        <h1 style={tournamentTitle}>ÜBERUNIT SUB-ZERO SHOWDOWN</h1>
         <p style={tournamentSub}>Top 2 teams advance to Playoffs</p>
 
         {/* Table Panel */}
