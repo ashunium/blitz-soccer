@@ -8,22 +8,15 @@ export default function Page() {
 
   return (
     <main style={page}>
-      {/* Background */}
+      {/* Snow background */}
       <div style={bg} />
-      <div style={overlay} />
 
-      <section style={content}>
-        {/* EVENT HEADER */}
-        <div style={eventBlock}>
-          <h1 style={eventTitle}>BLITZ WINTER CUP</h1>
-          <p style={eventSub}>OFFICIAL STANDINGS</p>
-        </div>
-
-        {/* TABLE PANEL */}
+      <section style={container}>
+        {/* Table Panel */}
         <div style={panel}>
           <div style={panelHeader}>
-            <span>GROUP A</span>
-            <span>TOP 2 QUALIFY</span>
+            <h1 style={panelTitle}>BLITZ WINTER CUP - GROUP A</h1>
+            <span style={panelSub}>Top 2 advance</span>
           </div>
 
           <table style={table}>
@@ -43,7 +36,7 @@ export default function Page() {
               {teams.map((t, i) => (
                 <tr key={t.name} style={i < 2 ? qualified : row}>
                   <td>{i + 1}</td>
-                  <td style={{ fontWeight: 700 }}>{t.name}</td>
+                  <td style={teamCell}>{t.name}</td>
                   <td>{t.p}</td>
                   <td>{t.w}</td>
                   <td>{t.d}</td>
@@ -65,8 +58,11 @@ export default function Page() {
 const page = {
   minHeight: "100vh",
   position: "relative",
-  color: "#ffffff",
   fontFamily: "Inter, system-ui, sans-serif",
+  color: "#fff",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 };
 
 const bg = {
@@ -75,68 +71,66 @@ const bg = {
   backgroundImage: "url('/backgrounds/winter-bg.jpg')",
   backgroundSize: "cover",
   backgroundPosition: "center",
+  zIndex: -1,
 };
 
-const overlay = {
-  position: "absolute",
-  inset: 0,
-  background:
-    "linear-gradient(90deg, rgba(5,15,30,0.85) 30%, rgba(5,15,30,0.55) 100%)",
-};
-
-const content = {
-  position: "relative",
-  maxWidth: "1300px",
-  margin: "0 auto",
-  padding: "100px 40px",
-};
-
-const eventBlock = {
-  marginBottom: "50px",
-};
-
-const eventTitle = {
-  fontSize: "72px",
-  fontWeight: 900,
-  letterSpacing: "0.04em",
-};
-
-const eventSub = {
-  marginTop: "8px",
-  fontSize: "16px",
-  opacity: 0.75,
+const container = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100%",
 };
 
 const panel = {
-  background: "rgba(15,23,42,0.75)",
-  backdropFilter: "blur(6px)",
-  border: "1px solid rgba(255,255,255,0.12)",
-  maxWidth: "720px",
+  background: "rgba(255,255,255,0.12)",
+  backdropFilter: "blur(12px)",
+  border: "1px solid rgba(255,255,255,0.3)",
+  borderRadius: "20px",
+  maxWidth: "900px",
+  width: "90%",
+  padding: "40px",
 };
 
 const panelHeader = {
   display: "flex",
   justifyContent: "space-between",
-  padding: "16px 20px",
-  fontWeight: 700,
-  borderBottom: "1px solid rgba(255,255,255,0.15)",
+  alignItems: "baseline",
+  marginBottom: "20px",
+};
+
+const panelTitle = {
+  fontSize: "32px",
+  fontWeight: 900,
+  letterSpacing: "0.04em",
+};
+
+const panelSub = {
+  fontSize: "14px",
+  opacity: 0.8,
 };
 
 const table = {
   width: "100%",
   borderCollapse: "collapse",
+  fontSize: "18px",
 };
 
 const row = {
-  borderBottom: "1px solid rgba(255,255,255,0.08)",
+  borderBottom: "1px solid rgba(255,255,255,0.25)",
 };
 
 const qualified = {
-  background: "rgba(59,130,246,0.15)",
-  borderBottom: "1px solid rgba(255,255,255,0.08)",
+  background: "rgba(37, 99, 235, 0.2)",
+  borderBottom: "1px solid rgba(255,255,255,0.25)",
+};
+
+const teamCell = {
+  textAlign: "left",
+  fontWeight: 700,
+  padding: "12px 8px",
 };
 
 const pts = {
   fontWeight: 900,
-  fontSize: "18px",
+  textAlign: "center",
 };
