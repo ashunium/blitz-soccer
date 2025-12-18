@@ -1,47 +1,91 @@
 export default function Page() {
   const teams = [
-    { name: "Blitz FC", p: 6, w: 4, d: 1, l: 1, gd: 7, pts: 13 },
-    { name: "Ice United", p: 6, w: 4, d: 0, l: 2, gd: 5, pts: 12 },
-    { name: "Snow City", p: 6, w: 3, d: 2, l: 1, gd: 3, pts: 11 },
-    { name: "Frost Wolves", p: 6, w: 2, d: 1, l: 3, gd: -1, pts: 7 },
+    {
+      name: "Blitz FC",
+      logo: "/logos/blitz.png",
+      p: 6, w: 4, d: 1, l: 1, gd: 7, pts: 13,
+      form: ["W", "W", "D", "W", "L"],
+    },
+    {
+      name: "Ice United",
+      logo: "/logos/ice.png",
+      p: 6, w: 4, d: 0, l: 2, gd: 5, pts: 12,
+      form: ["W", "L", "W", "W", "W"],
+    },
+    {
+      name: "Snow City",
+      logo: "/logos/snow.png",
+      p: 6, w: 3, d: 2, l: 1, gd: 3, pts: 11,
+      form: ["D", "W", "D", "W", "L"],
+    },
+    {
+      name: "Frost Wolves",
+      logo: "/logos/frost.png",
+      p: 6, w: 2, d: 1, l: 3, gd: -1, pts: 7,
+      form: ["L", "W", "L", "D", "L"],
+    },
   ];
 
   return (
     <main style={page}>
-      {/* Background */}
       <div style={bg} />
 
       <section style={container}>
-        {/* Tournament Name */}
-        <h1 style={tournamentTitle}>ÜBERUNIT SUB-ZERO SHOWDOWN</h1>
-        <p style={tournamentSub}>Top 2 teams advance to Playoffs</p>
+        <h1 style={tournamentTitle}>BLITZ WINTER CUP – GROUP A</h1>
+        <p style={tournamentSub}>Top 2 teams qualify for Playoffs</p>
 
-        {/* Table Panel */}
         <div style={panel}>
           <table style={table}>
             <thead>
               <tr>
-                <th style={thCenter}>#</th>
-                <th style={thLeft}>TEAM</th>
-                <th style={thCenter}>P</th>
-                <th style={thCenter}>W</th>
-                <th style={thCenter}>D</th>
-                <th style={thCenter}>L</th>
-                <th style={thCenter}>GD</th>
-                <th style={thCenter}>PTS</th>
+                <th>#</th>
+                <th></th>
+                <th style={left}>TEAM</th>
+                <th>P</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>GD</th>
+                <th>PTS</th>
+                <th style={left}>FORM</th>
               </tr>
             </thead>
+
             <tbody>
               {teams.map((t, i) => (
                 <tr key={t.name} style={i < 2 ? qualified : row}>
-                  <td style={tdCenter}>{i + 1}</td>
-                  <td style={tdTeam}>{t.name}</td>
-                  <td style={tdCenter}>{t.p}</td>
-                  <td style={tdCenter}>{t.w}</td>
-                  <td style={tdCenter}>{t.d}</td>
-                  <td style={tdCenter}>{t.l}</td>
-                  <td style={tdCenter}>{t.gd > 0 ? `+${t.gd}` : t.gd}</td>
-                  <td style={tdCenter}>{t.pts}</td>
+                  <td>{i + 1}</td>
+
+                  <td>
+                    <img src={t.logo} style={logo} />
+                  </td>
+
+                  <td style={teamName}>{t.name}</td>
+                  <td>{t.p}</td>
+                  <td>{t.w}</td>
+                  <td>{t.d}</td>
+                  <td>{t.l}</td>
+                  <td>{t.gd > 0 ? `+${t.gd}` : t.gd}</td>
+                  <td style={pts}>{t.pts}</td>
+
+                  <td>
+                    <div style={formWrap}>
+                      {t.form.map((f, idx) => (
+                        <span
+                          key={idx}
+                          style={{
+                            ...formDot,
+                            background:
+                              f === "W" ? "#2563eb" :
+                              f === "D" ? "#64748b" :
+                              "#dc2626",
+                          }}
+                        >
+                          {f}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -59,9 +103,6 @@ const page = {
   position: "relative",
   fontFamily: "Inter, system-ui, sans-serif",
   color: "#fff",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "flex-start",
   paddingTop: "80px",
 };
 
@@ -75,25 +116,21 @@ const bg = {
 };
 
 const container = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  width: "100%",
+  maxWidth: "1300px",
+  margin: "0 auto",
+  textAlign: "center",
 };
 
 const tournamentTitle = {
   fontSize: "56px",
   fontWeight: 900,
-  marginBottom: "8px",
-  textAlign: "center",
+  marginBottom: "6px",
 };
 
 const tournamentSub = {
   fontSize: "18px",
-  opacity: 0.8,
+  opacity: 0.85,
   marginBottom: "40px",
-  textAlign: "center",
 };
 
 const panel = {
@@ -101,38 +138,13 @@ const panel = {
   backdropFilter: "blur(14px)",
   border: "1px solid rgba(255,255,255,0.25)",
   borderRadius: "22px",
-  padding: "50px",
-  width: "90%",
-  maxWidth: "1000px",
+  padding: "40px",
 };
 
 const table = {
   width: "100%",
   borderCollapse: "collapse",
-  fontSize: "20px",
-};
-
-const thCenter = {
-  textAlign: "center",
-  padding: "12px 8px",
-  fontWeight: 700,
-};
-
-const thLeft = {
-  textAlign: "left",
-  padding: "12px 8px",
-  fontWeight: 700,
-};
-
-const tdCenter = {
-  textAlign: "center",
-  padding: "12px 8px",
-};
-
-const tdTeam = {
-  textAlign: "left",
-  padding: "12px 8px",
-  fontWeight: 700,
+  fontSize: "18px",
 };
 
 const row = {
@@ -140,6 +152,41 @@ const row = {
 };
 
 const qualified = {
-  background: "rgba(37,99,235,0.2)",
+  background: "rgba(37,99,235,0.22)",
   borderBottom: "1px solid rgba(255,255,255,0.15)",
+};
+
+const left = { textAlign: "left" };
+
+const logo = {
+  width: "32px",
+  height: "32px",
+  objectFit: "contain",
+};
+
+const teamName = {
+  textAlign: "left",
+  fontWeight: 700,
+};
+
+const pts = {
+  fontWeight: 900,
+  fontSize: "18px",
+};
+
+const formWrap = {
+  display: "flex",
+  gap: "6px",
+};
+
+const formDot = {
+  width: "26px",
+  height: "26px",
+  borderRadius: "6px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: "12px",
+  fontWeight: 800,
+  color: "#fff",
 };
