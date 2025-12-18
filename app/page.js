@@ -145,6 +145,7 @@ const table = {
   width: "100%",
   borderCollapse: "collapse",
   fontSize: "18px",
+  textAlign: "center",
 };
 
 const row = {
