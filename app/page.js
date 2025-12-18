@@ -118,11 +118,7 @@ const bg = {
 const container = {
   maxWidth: "1300px",
   margin: "0 auto",
-  paddingLeft: "40px",
-  paddingRight: "40px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
+  textAlign: "center",
 };
 
 const tournamentTitle = {
@@ -138,14 +134,12 @@ const tournamentSub = {
 };
 
 const panel = {
-  width: "100%",
   background: "rgba(255,255,255,0.15)",
   backdropFilter: "blur(14px)",
   border: "1px solid rgba(255,255,255,0.25)",
   borderRadius: "22px",
-  padding: "44px 48px",
+  padding: "40px",
 };
-
 
 const table = {
   width: "100%",
