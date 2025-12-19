@@ -46,7 +46,7 @@ export default function Page() {
                 <th>L</th>
                 <th>GD</th>
                 <th>PTS</th>
-                <th style={left}>FORM</th>
+                <th style={{ textAlign: "left", width: "220px" }}>FORM</th>
               </tr>
             </thead>
 
@@ -87,7 +87,7 @@ export default function Page() {
                         </span>
                       ))}
                     </div>
-                  </td>
+                  <td style={{ width: "220px" }}>
                 </tr>
               ))}
             </tbody>
@@ -141,14 +141,14 @@ const panel = {
   border: "1px solid rgba(255,255,255,0.25)",
   borderRadius: "22px",
   padding: "36px 42px",
-  width: "fit-content",   
-  margin: "0 auto",      
+  maxWidth: "1100px",
+  margin: "0 auto",
 };
 
 const table = {
+  width: "100%",          
   borderCollapse: "collapse",
   fontSize: "18px",
-  minWidth: "900px",      
 };
 
 const row = {
