@@ -56,11 +56,18 @@ export default function Page() {
                 <tr key={t.name} style={i < 2 ? qualified : row}>
                   <td>{i + 1}</td>
 
-                  <td>
-                    <img src={t.logo} style={logo} />
+                  <td colSpan={2}>
+                    <div style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "12px",
+                    }}>
+                      <img src={t.logo} style={logo} />
+                      <span style={{ fontWeight: 700 }}>{t.name}</span>
+                    </div>
                   </td>
 
-                  <td style={teamName}>{t.name}</td>
                   <td>{t.p}</td>
                   <td>{t.w}</td>
                   <td>{t.d}</td>
