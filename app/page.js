@@ -87,7 +87,7 @@ export default function Page() {
                         </span>
                       ))}
                     </div>
-                  <td>
+                  </td>
                 </tr>
               ))}
             </tbody>
