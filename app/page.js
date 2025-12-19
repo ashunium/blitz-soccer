@@ -111,7 +111,8 @@ const page = {
 const bg = {
   position: "absolute",
   inset: 0,
-  backgroundImage: "url('/backgrounds/winter-bg.jpg')",
+  backgroundImage:
+    "linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('/backgrounds/winter-bg.jpg')",
   backgroundSize: "cover",
   backgroundPosition: "center",
   zIndex: -1,
