@@ -202,3 +202,9 @@ const teamCell = {
   fontWeight: 700,
   paddingLeft: "6px",
 };
+
+const stat = {
+  padding: "12px 6px",   
+  textAlign: "center",
+  whiteSpace: "nowrap",
+};
