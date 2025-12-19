@@ -55,13 +55,13 @@ export default function Page() {
                 <tr key={t.name} style={i < 2 ? qualified : row}>
                   <td>{i + 1}</td>
 
+                  {/* TEAM CELL (logo + name) */}
                   <td style={teamCell}>
                     <img src={t.logo} style={logo} />
                     <span>{t.name}</span>
                   </td>
 
-                  <td style={teamName}>{t.name}</td>
-
+                  {/* STATS */}
                   <td style={stat}>{t.p}</td>
                   <td style={stat}>{t.w}</td>
                   <td style={stat}>{t.d}</td>
@@ -69,7 +69,7 @@ export default function Page() {
                   <td style={stat}>{t.gd > 0 ? `+${t.gd}` : t.gd}</td>
                   <td style={{ ...stat, ...pts }}>{t.pts}</td>
 
-
+                  {/* FORM */}
                   <td>
                     <div style={formWrap}>
                       {t.form.map((f, idx) => (
@@ -141,14 +141,14 @@ const panel = {
   border: "1px solid rgba(255,255,255,0.25)",
   borderRadius: "22px",
   padding: "40px",
-  maxWidth: "1100px",     
-  margin: "0 auto",       
+  maxWidth: "1100px",
+  margin: "0 auto",
 };
 
 const table = {
   width: "100%",
   borderCollapse: "collapse",
-  fontSize: "18px",  
+  fontSize: "18px",
 };
 
 const row = {
@@ -168,14 +168,23 @@ const logo = {
   objectFit: "contain",
 };
 
-const teamName = {
+const pts = {
+  fontWeight: 900,
+  fontSize: "18px",
+};
+
+const teamCell = {
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
   textAlign: "left",
   fontWeight: 700,
 };
 
-const pts = {
-  fontWeight: 900,
-  fontSize: "18px",
+const stat = {
+  padding: "12px 6px",
+  textAlign: "center",
+  whiteSpace: "nowrap",
 };
 
 const formWrap = {
@@ -193,19 +202,4 @@ const formDot = {
   fontSize: "12px",
   fontWeight: 800,
   color: "#fff",
-};
-
-const teamCell = {
-  display: "flex",
-  alignItems: "center",
-  gap: "10px",
-  textAlign: "left",
-  fontWeight: 700,
-  paddingLeft: "6px",
-};
-
-const stat = {
-  padding: "12px 6px",   
-  textAlign: "center",
-  whiteSpace: "nowrap",
 };
