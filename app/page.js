@@ -62,12 +62,13 @@ export default function Page() {
 
                   <td style={teamName}>{t.name}</td>
 
-                  <td>{t.p}</td>
-                  <td>{t.w}</td>
-                  <td>{t.d}</td>
-                  <td>{t.l}</td>
-                  <td>{t.gd > 0 ? `+${t.gd}` : t.gd}</td>
-                  <td style={pts}>{t.pts}</td>
+                  <td style={stat}>{t.p}</td>
+                  <td style={stat}>{t.w}</td>
+                  <td style={stat}>{t.d}</td>
+                  <td style={stat}>{t.l}</td>
+                  <td style={stat}>{t.gd > 0 ? `+${t.gd}` : t.gd}</td>
+                  <td style={{ ...stat, ...pts }}>{t.pts}</td>
+
 
                   <td>
                     <div style={formWrap}>
