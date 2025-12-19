@@ -56,17 +56,11 @@ export default function Page() {
                 <tr key={t.name} style={i < 2 ? qualified : row}>
                   <td>{i + 1}</td>
 
-                  <td colSpan={2}>
-                    <div style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: "12px",
-                    }}>
-                      <img src={t.logo} style={logo} />
-                      <span style={{ fontWeight: 700 }}>{t.name}</span>
-                    </div>
+                  <td>
+                    <img src={t.logo} style={logo} />
                   </td>
+
+                  <td style={teamName}>{t.name}</td>
 
                   <td>{t.p}</td>
                   <td>{t.w}</td>
@@ -152,7 +146,6 @@ const table = {
   width: "100%",
   borderCollapse: "collapse",
   fontSize: "18px",
-  textAlign: "center",
 };
 
 const row = {
