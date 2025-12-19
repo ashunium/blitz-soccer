@@ -140,15 +140,15 @@ const panel = {
   backdropFilter: "blur(14px)",
   border: "1px solid rgba(255,255,255,0.25)",
   borderRadius: "22px",
-  padding: "40px",
-  maxWidth: "1100px",
-  margin: "0 auto",
+  padding: "36px 42px",
+  width: "fit-content",   
+  margin: "0 auto",      
 };
 
 const table = {
-  width: "100%",
   borderCollapse: "collapse",
   fontSize: "18px",
+  minWidth: "900px",      
 };
 
 const row = {
