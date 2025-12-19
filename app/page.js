@@ -70,7 +70,7 @@ export default function Page() {
                   <td style={{ ...stat, ...pts }}>{t.pts}</td>
 
                   {/* FORM */}
-                  <td>
+                  <td style={{ width: "220px" }}>
                     <div style={formWrap}>
                       {t.form.map((f, idx) => (
                         <span
@@ -87,7 +87,7 @@ export default function Page() {
                         </span>
                       ))}
                     </div>
-                  <td style={{ width: "220px" }}>
+                  <td>
                 </tr>
               ))}
             </tbody>
