@@ -39,7 +39,6 @@ export default function Page() {
             <thead>
               <tr>
                 <th>#</th>
-                <th></th>
                 <th style={left}>TEAM</th>
                 <th>P</th>
                 <th>W</th>
@@ -56,8 +55,9 @@ export default function Page() {
                 <tr key={t.name} style={i < 2 ? qualified : row}>
                   <td>{i + 1}</td>
 
-                  <td>
+                  <td style={teamCell}>
                     <img src={t.logo} style={logo} />
+                    <span>{t.name}</span>
                   </td>
 
                   <td style={teamName}>{t.name}</td>
@@ -147,8 +147,7 @@ const panel = {
 const table = {
   width: "100%",
   borderCollapse: "collapse",
-  fontSize: "18px",
-  tableLayout: "fixed",   
+  fontSize: "18px",  
 };
 
 const row = {
@@ -184,7 +183,7 @@ const formWrap = {
 };
 
 const formDot = {
-  width: "26px",
+  width: "28px",
   height: "26px",
   borderRadius: "6px",
   display: "flex",
@@ -193,4 +192,13 @@ const formDot = {
   fontSize: "12px",
   fontWeight: 800,
   color: "#fff",
+};
+
+const teamCell = {
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
+  textAlign: "left",
+  fontWeight: 700,
+  paddingLeft: "6px",
 };
